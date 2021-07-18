@@ -1,9 +1,4 @@
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
-
 const { userModel } = require('../model/index')
-
-
 
 async function register(req, res) {
   let body = req.body
@@ -13,9 +8,9 @@ async function register(req, res) {
     email: body.email
   }
   const user = new userModel(userReq);
-  await user.save(function (err, user) {
+  await user.save(function (err, data) {
     if (err) res.json(err)
-    res.json(user);
+    res.json(data);
   });
 }
 
