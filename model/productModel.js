@@ -44,7 +44,7 @@ const productSchema = new Schema({
   },
   type: {
     type: String,
-    enum: ['Before', 'Now']
+    enum: ['Old', 'New', 'Gift', 'Other'] // Reference typeProduct
   },
   categoryId: {
     type: String

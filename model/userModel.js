@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose
-const roleModel = require('./roleModel')
+const role = require('./role')
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const userSchema = new Schema({
@@ -27,8 +27,8 @@ const userSchema = new Schema({
   },
   role: {
     type: String,
-    default: "CLIENT",
-    enum: ["CLIENT, ADMIN"]
+    enum: ['ADMIN', 'CLIENT'],
+    default: "CLIENT"
   }
 }, { timestamps: true });
 

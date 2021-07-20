@@ -1,9 +1,12 @@
 const userRoute = require('./userRoute')
 const categoryRoute = require('./caterogyRoute')
-const productRouter = require('./productRoute')
-
+const productRoute = require('./productRoute')
+const sileInfoRoute = require('./slideInfoRoute')
+const homePageRoute = require('./homePage')
 module.exports = [
   userRoute,
   categoryRoute,
-  productRouter
+  productRoute,
+  sileInfoRoute,
+  homePageRoute,
 ]
