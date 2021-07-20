@@ -6,7 +6,6 @@ const productSchema = new Schema({
     type: String,
     required: true,
     trim: true,
-
   },
   code: {
     type: String,
@@ -32,6 +31,9 @@ const productSchema = new Schema({
     type: Number,
     default: 0
   },
+
+  // discount
+
   amount: {
     type: Number,
     default: 0
@@ -39,6 +41,10 @@ const productSchema = new Schema({
   status: {
     type: Number,
     enum: [0, 100, 900]
+  },
+  type: {
+    type: String,
+    enum: ['Before', 'Now']
   },
   categoryId: {
     type: String

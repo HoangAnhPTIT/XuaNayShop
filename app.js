@@ -3,7 +3,7 @@ const cors = require('cors')
 const app = express()
 const connectDb = require('./middleware/connectDatabase')
 const routes = require('./routes/index')
-
+const resolveJwtToken = require('./middleware/jwt');
 app.use(cors())
 app.use(express.json())
 app.use(
@@ -11,6 +11,8 @@ app.use(
     extended: true
   })
 )
+
+app.use(resolveJwtToken)
 
 const port = 3000
 

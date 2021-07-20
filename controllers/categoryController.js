@@ -14,7 +14,7 @@ async function create(req, res) {
 }
 
 async function findAll(req, res) {
-  await categoryModel.findAll((err, data) => {
+  await categoryModel.find((err, data) => {
     if (err) res.json(err)
     res.json(data)
   })
@@ -29,14 +29,12 @@ async function findOne(req, res) {
 }
 
 async function update(req, res) {
-  const category = res.body.category
   const id = req.params.id
-  await categoryModel.findOneAndUpdate({
-    id: id
-  }, category, (err, res) => {
-    if (err) res.json(err)
-    res.json(data)
-  })
+  const filter = { _id: id };
+  const category = req.body.category
+
+  let categoryUpdated = await categoryModel.updateOne(filter, {$set:category})
+  res.json({ categoryUpdated })
 }
 
 module.exports = {
