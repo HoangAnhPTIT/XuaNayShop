@@ -1,12 +1,15 @@
 const express = require('express')
 const categoryRoute = express.Router()
-const { create, findAll, findOne, update } = require('../controllers/categoryController')
+const { create, findAll, findOne, update, createTypeProduct } = require('../controllers/categoryController')
 const { loginRequired, adminRequired } = require('../controllers/userController')
 
-categoryRoute.post('/category/create', loginRequired, adminRequired, create)
-categoryRoute.get('/categorys', findAll)
+// categoryRoute.post('/category/create', loginRequired, adminRequired, create)
+categoryRoute.post('/category/create', create)
+
+categoryRoute.get('/categories', findAll)
 categoryRoute.get('/category/:id', findOne)
 categoryRoute.patch('/category/:id', loginRequired, adminRequired, update)
 
+categoryRoute.post('/category/create/type-product', createTypeProduct)
 
 module.exports = categoryRoute

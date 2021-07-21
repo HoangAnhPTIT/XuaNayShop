@@ -44,12 +44,22 @@ const productSchema = new Schema({
   },
   type: {
     type: String,
-    enum: ['Before', 'Now']
+    enum: ['OLD', 'NEW', 'GIFT', 'OTHER'] // Reference typeProduct
   },
-  categoryId: {
-    type: String
+  category: {
+    type: Schema.Types.ObjectId,
+    ref: 'categories'
+  },
+  quantityPurchased: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  childType: {
+    type: String,
+    enum: ['A', 'B', 'C']
   }
-}, {timestamps: true})
+}, { timestamps: true })
 
 const productModel = mongoose.model('products', productSchema);
 
