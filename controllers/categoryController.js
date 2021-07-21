@@ -1,10 +1,11 @@
-const { categoryModel } = require('../model')
+const { categoryModel, typeProductModel } = require('../model')
 
 async function create(req, res) {
   const body = req.body
   let categoryReq = {
     name: body.name,
-    code: body.code
+    code: body.code,
+    product: body.product
   }
   const category = new categoryModel(categoryReq)
   await category.save((err, data) => {
@@ -37,9 +38,19 @@ async function update(req, res) {
   res.json({ categoryUpdated })
 }
 
+async function createTypeProduct(req, res){
+  let typeProductReq = req.body.typeProduct
+  const typeProduct = new typeProductModel(typeProductReq)
+  await typeProduct.save((err, data) => {
+    if (err) res.json(err)
+    res.json(data)
+  })
+}
+
 module.exports = {
   create,
   findAll,
   findOne,
-  update
+  update,
+  createTypeProduct
 }

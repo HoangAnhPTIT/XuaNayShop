@@ -8,7 +8,7 @@ async function create(req, res) {
   })
 }
 async function findAll(req, res) {
-  await productModel.find((err, data) => {
+  await productModel.find().populate('categoryId').exec((err, data) => {
     if (err) res.json(err)
     res.json(data)
   })
