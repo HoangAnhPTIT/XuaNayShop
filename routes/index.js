@@ -1,9 +1,15 @@
-const userRoute = require('./userRoute')
-const categoryRoute = require('./caterogyRoute')
-const productRouter = require('./productRoute')
+const userRouter = require('./userRouter')
+const categoryRouter = require('./caterogyRouter')
+const productRouter = require('./productRouter')
+const homepageRouter = require('./homePageRouter')
+const slideInfoRouter = require('./slideInfoRouter')
+const filterRouter = require('./filterRouter')
 
 module.exports = [
-  userRoute,
-  categoryRoute,
-  productRouter
+  userRouter,
+  categoryRouter,
+  productRouter,
+  homepageRouter,
+  slideInfoRouter,
+  filterRouter
 ]

@@ -1,4 +1,4 @@
-const { slideInfoModel, typeProductModel, productModel, categoryModel } = require('../model')
+const { slideInfoModel, productModel, categoryModel } = require('../model')
 const typeProductEnum = require('../model/typeProductEnum')
 
 const typeProductRes = '_id title images originalPrice promotedPrice amountquantityPurchased name type childType'
