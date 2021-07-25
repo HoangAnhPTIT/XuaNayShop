@@ -10,6 +10,6 @@ categoryRoute.get('/categories', findAll)
 categoryRoute.get('/category/:id', findOne)
 categoryRoute.patch('/category/:id', loginRequired, adminRequired, update)
 
-categoryRoute.post('/category/create/type-product', createTypeProduct)
+categoryRoute.post('/type-product/create', createTypeProduct)
 
 module.exports = categoryRoute

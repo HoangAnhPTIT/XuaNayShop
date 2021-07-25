@@ -1,4 +1,4 @@
-const { categoryModel, typeProductModel } = require('../model')
+const { categoryModel, typeChildModel } = require('../model')
 
 async function create(req, res) {
   const body = req.body
@@ -40,7 +40,7 @@ async function update(req, res) {
 
 async function createTypeProduct(req, res){
   let typeProductReq = req.body.typeProduct
-  const typeProduct = new typeProductModel(typeProductReq)
+  const typeProduct = new typeChildModel(typeProductReq)
   await typeProduct.save((err, data) => {
     if (err) res.json(err)
     res.json(data)

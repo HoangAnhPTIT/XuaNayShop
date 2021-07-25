@@ -1,4 +1,4 @@
-const { slideInfoModel, productModel, categoryModel } = require('../model')
+const { slideInfoModel, productModel, categoryModel, typeChildModel } = require('../model')
 const typeProductEnum = require('../model/typeProductEnum')
 
 const typeProductRes = '_id title images originalPrice promotedPrice amountquantityPurchased name type childType'
@@ -25,18 +25,42 @@ async function getHighlightProduct() {
   return highLightProduct;
 }
 
-async function getClockProduct() {
-  let clockProduct = await categoryModel.findOne({code: "CLOCK"}).populate({
+async function getClockProductByType(typeChildClock) {
+  let clockProduct = await categoryModel.findOne({ code: "CLOCK" }).populate({
     path: 'product',
     select: typeProductRes,
-    match: {childType: 'A'}
+    match: { childType: `${typeChildClock}` }
   })
-  const listTypeChild = ['A', 'B', 'C']
-  return {clockProduct, listTypeChild}
+  return clockProduct
 }
 
-async function getGiftProduct(){
-  let giftProduct = await categoryModel.findOne({code: "GIFT"}).populate({
+async function getTypeChildProduct(categoryCode) {
+  try {
+    let typeChildProducts = await typeChildModel.find({}, 'typeChild')
+      .populate('typeParent',
+        { match: { code: 123 } })
+    return typeChildProducts.map(x => {
+      return x.typeChild
+    })
+  } catch (err) {
+    throw new Error('Err')
+  }
+
+}
+
+async function getClockProduct() {
+  let clockProduct = []
+  let typeChildClock = await getTypeChildProduct('CLOCK')
+  for (const typeChild of typeChildClock) {
+    let productByType = await getClockProductByType(typeChild)
+    clockProduct.push({ [typeChild]: productByType.product })
+  }
+
+  return clockProduct 
+}
+
+async function getGiftProduct() {
+  let giftProduct = await categoryModel.findOne({ code: "GIFT" }).populate({
     path: 'product',
     select: typeProductRes
   })
@@ -44,12 +68,12 @@ async function getGiftProduct(){
 }
 
 async function getFullData(req, res) {
-  const slideInfos = await getSlideInfo(res)
-  const typeProduct = getTypeProduct();
-  const highlightProduct = await getHighlightProduct()
-  const clockProduct = await getClockProduct()
-  const giftProduct = await getGiftProduct()
-  const homePageData = { slideInfos, typeProduct, highlightProduct, clockProduct, giftProduct }
+  const banners = await getSlideInfo(res)
+  const typeProducts = getTypeProduct();
+  const highlightProducts = await getHighlightProduct()
+  const clockProducts = await getClockProduct()
+  const giftProducts = await getGiftProduct()
+  const homePageData = { banners, typeProducts, highlightProducts, clockProducts, giftProducts }
   res.json(homePageData)
 }
 
