@@ -46,10 +46,10 @@ const productSchema = new Schema({
     type: String,
     enum: ['OLD', 'NEW', 'GIFT', 'OTHER'] // Reference typeProduct
   },
-  category: {
+  category: [{
     type: Schema.Types.ObjectId,
     ref: 'categories'
-  },
+  }],
   quantityPurchased: {
     type: Number,
     required: true,
