@@ -56,8 +56,7 @@ const productSchema = new Schema({
     default: 0
   },
   childType: {
-    type: String,
-    enum: ['A', 'B', 'C']
+    type: String
   }
 }, { timestamps: true })
 

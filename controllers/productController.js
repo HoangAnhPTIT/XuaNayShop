@@ -14,7 +14,7 @@ async function create(req, res) { // Check validate category id
   })
 }
 async function findAll(req, res) {
-  await productModel.find().populate('categoryId').exec((err, data) => {
+  await productModel.find().exec((err, data) => {
     if (err) res.json(err)
     res.json(data)
   })
@@ -22,7 +22,7 @@ async function findAll(req, res) {
 
 async function findOne(req, res) {
   const productId = req.params.id;
-  const product = await productModel.findById(productId).populate('category')
+  const product = await productModel.findById(productId)
   res.json(product)
 }
 

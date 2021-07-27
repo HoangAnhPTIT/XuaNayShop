@@ -4,6 +4,8 @@ const productRouter = require('./productRouter')
 const homepageRouter = require('./homePageRouter')
 const slideInfoRouter = require('./slideInfoRouter')
 const filterRouter = require('./filterRouter')
+const emailRouter= require('./emailRouter')
+
 
 module.exports = [
   userRouter,
@@ -11,5 +13,6 @@ module.exports = [
   productRouter,
   homepageRouter,
   slideInfoRouter,
-  filterRouter
+  filterRouter,
+  emailRouter
 ]
